@@ -69,17 +69,15 @@ def atualiza_funcionarios():
 
     try:
         #Para a criação de uma tabela vinda da planilha, sempre informar a primeira coluna sendo o rf(REGISTRO FUNCIONAL) do jeito que é apresentado na planilha original
-        '''
-        dados_estrutura = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '265417126', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        dados_biblioteca = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '1996709131', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        dados_funcionarios = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '0', None, ['REGISTRO', 'CARGO'])
-        '''
+        #Usando google sheets
+        #dados_estrutura = pega_dados_planilha('exemplo_id', 'exemplo_gid', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
+        #dados_biblioteca = pega_dados_planilha('exemplo_id', 'exemplo_gid', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
+        #dados_funcionarios = pega_dados_planilha('exemplo_id', 'exemplo_gid', None, ['REGISTRO', 'CARGO'])
+
+        #Usando arquivo local
         dados_estrutura = pega_dados_planilha_local('funcionarios.xlsx', 'Estrutura', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        print(dados_estrutura)
         dados_biblioteca = pega_dados_planilha_local('funcionarios.xlsx', 'Bibliotecas', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        print(dados_biblioteca)
         dados_funcionarios = pega_dados_planilha_local('funcionarios.xlsx', 'Funcionários', None, ['REGISTRO', 'CARGO'])
-        print(dados_funcionarios)
 
         coordenadores = []
 
@@ -110,7 +108,8 @@ relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identifica
 
 relatorio_logs([relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identificados], ['coordenadores', 'funcionarios', 'excecoes'])
 
-#schedule.every(40).minutes.do(altera_coordenador)
+#Configuração para repetição de execução de código
+schedule.every(6).hours.do(altera_coordenador)
 
-#while True:
-#    schedule.run_pending()
+while True:
+    schedule.run_pending()
