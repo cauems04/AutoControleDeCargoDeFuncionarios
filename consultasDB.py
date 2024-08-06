@@ -2,13 +2,13 @@ from conectorDB import conectar_banco_de_dados, fechar_conexao
 
 def atualiza_banco(usuario, status_nome, status, cargos_id):
 
-    conexao, banco_nome = conectar_banco_de_dados('tihdteste')
+    conexao, banco_nome = conectar_banco_de_dados('banco_nome')
     if conexao:
 
         try:
             cursor = conexao.cursor()
 
-            comando = (f"UPDATE glpi_users SET usertitles_id = {status} WHERE name LIKE '%{usuario}%';")
+            comando = (f"UPDATE banco_users SET usertitles_id = {status} WHERE name LIKE '%{usuario}%';")
 
             cursor.execute(comando)
 
