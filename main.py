@@ -109,7 +109,7 @@ relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identifica
 relatorio_logs([relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identificados], ['coordenadores', 'funcionarios', 'excecoes'])
 
 #Configuração para repetição de execução de código
-schedule.every(6).hours.do(altera_coordenador)
+#schedule.every(6).hours.do(atualiza_funcionarios)
 
-while True:
-    schedule.run_pending()
+#while True:
+#    schedule.run_pending()
