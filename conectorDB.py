@@ -6,8 +6,8 @@ def conectar_banco_de_dados(banco_nome):
         conexao = mysql.connector.connect(
             host = "10.59.208.183",
             port = "3306",
-            user = "user",
-            password = "pswd",
+            user = "root",
+            password = "0730@info",
             database = banco_nome
         )
 
