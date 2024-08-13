@@ -2,7 +2,7 @@ from conectorDB import conectar_banco_de_dados, fechar_conexao
 
 def atualiza_banco(usuario, status_nome, status, cargos_id):
 
-    conexao, banco_nome = conectar_banco_de_dados('tihd')
+    conexao, banco_nome = conectar_banco_de_dados('tihdteste')
     if conexao:
 
         try:
