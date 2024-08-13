@@ -28,7 +28,7 @@ def atualiza_coordenador(dados, dicionario_cargos, tabela_relatorio, coordenador
         print('Erro: ', e)
 
 
-def atualiza_cargo(dados, dicionario_cargos, tabela_relatorio, tabela_cargos_inexistentes, coordenadores):
+def atualiza_funcionarios(dados, dicionario_cargos, tabela_relatorio, tabela_cargos_inexistentes, coordenadores):
     try:
         for i in range(0, len(dados)):
 
@@ -59,26 +59,26 @@ def atualiza_cargo(dados, dicionario_cargos, tabela_relatorio, tabela_cargos_ine
         return tabela_relatorio, tabela_cargos_inexistentes
 
 
-def atualiza_funcionarios():
+def atualiza_cargos():
 
-    tabela_coordenadores_atualizados = pd.DataFrame(columns = ['RF', 'Cargo_atualizado', 'Cargo_ID'])
-    tabela_funcionarios_atualizados = pd.DataFrame(columns = ['RF', 'Cargo_atualizado', 'Cargo_ID'])
-    tabela_cargos_nao_identificados = pd.DataFrame(columns = ['RF', 'Cargo'])
+    tabela_coordenadores_atualizados = pd.DataFrame(columns = ['col1', 'col2', 'col3'])
+    tabela_funcionarios_atualizados = pd.DataFrame(columns = ['col1', 'col2', 'col3'])
+    tabela_cargos_nao_identificados = pd.DataFrame(columns = ['col1', 'col2'])
 
     cargos_ids = {'Coordenador': 3, 'Operacional/Fundamental': 8, 'Bibliotecário': 9, 'Superior': 12, 'Administrativo/Nível Médio': 13, 'Operacional/Fundamental - Vigia': 14}
 
     try:
         #Para a criação de uma tabela vinda da planilha, sempre informar a primeira coluna sendo o rf(REGISTRO FUNCIONAL) do jeito que é apresentado na planilha original
         '''
-        dados_estrutura = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '265417126', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        dados_biblioteca = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '1996709131', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
-        dados_funcionarios = pega_dados_planilha('1UwBEczQmPcrI9wtIZdda9LccAr_zrr8rITmOrURuNmA', '0', None, ['REGISTRO', 'CARGO'])
+        dados_estrutura = pega_dados_planilha('teste', 'teste', teste, ['teste'])
+        dados_biblioteca = pega_dados_planilha('teste', 'teste', teste, ['teste'])
+        dados_funcionarios = pega_dados_planilha('teste', 'teste', teste, ['teste'])
         '''
-        dados_estrutura = pega_dados_planilha_local('Controle de funcionários.xlsx', 'Estrutura', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
+        dados_estrutura = pega_dados_planilha_local('teste.xlsx', 'teste', 1, ['teste'])
         print(dados_estrutura)
-        dados_biblioteca = pega_dados_planilha_local('Controle de funcionários.xlsx', 'Bibliotecas', 1, ['REGISTRO FUNCIONAL', 'COORDENAÇÃO'])
+        dados_biblioteca = pega_dados_planilha_local('teste.xlsx', 'teste', 1, ['teste'])
         print(dados_biblioteca)
-        dados_funcionarios = pega_dados_planilha_local('Controle de funcionários.xlsx', 'Funcionários', None, ['REGISTRO', 'CARGO'])
+        dados_funcionarios = pega_dados_planilha_local('teste.xlsx', 'teste', None, ['teste'])
         print(dados_funcionarios)
 
         coordenadores = []
@@ -88,7 +88,7 @@ def atualiza_funcionarios():
         coordenadores, tabela_coordenadores_atualizados = atualiza_coordenador(dados_biblioteca, cargos_ids, tabela_coordenadores_atualizados, coordenadores)
         print(coordenadores)
 
-        tabela_funcionarios_atualizados, tabela_cargos_nao_identificados = atualiza_cargo(dados_funcionarios, cargos_ids, tabela_funcionarios_atualizados, tabela_cargos_nao_identificados, coordenadores)
+        tabela_funcionarios_atualizados, tabela_cargos_nao_identificados = atualiza_funcionarios(dados_funcionarios, cargos_ids, tabela_funcionarios_atualizados, tabela_cargos_nao_identificados, coordenadores)
 
         print('\n\n--------------Funcionários atualizados--------------')
         print(tabela_funcionarios_atualizados)
@@ -106,11 +106,11 @@ def atualiza_funcionarios():
     except Exception as e:
         print('Erro: ', e)
 
-relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identificados = atualiza_funcionarios()
+relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identificados = atualiza_cargos()
 
 relatorio_logs([relatorio_coordenadores, relatorio_funcionarios, relatorio_cargos_nao_identificados], ['Coordenadores atualizados', 'Funcionarios atualizados', 'Exceções'])
 
-#schedule.every(1).friday.do(atualiza_funcionarios)
+#schedule.every(1).friday.do(atualiza_cargos)
 
 #while True:
 #    schedule.run_pending()
